@@ -1,0 +1,52 @@
+Victor Amaral - 17\0164411
+
+Lista 3, EDA 1
+Prof. John Lenon Gardenhi
+
+Q.1)a)Move o vetor em uma casa de memória
+b)Move em +1 na memória para o primeiro valor do vetor
+c)Move o vetor em uma casa a mais de memória
+d)Move o vetor em dez casas a mais de memória
+
+Q.4)a)Não é válida, pois não se consegue mover na memória um ponteiro alocado não dinamicamente
+b)Não é valida, pois não se consegue mover na memória um ponteiro alocado não dinamicamente
+c)Não é valida, pois não se consegue mover na memória um ponteiro alocado não dinamicamente
+d)Válida, pois se consegue mover na memória um ponteiro alocado dinamicamente
+e)Válida, pois se consegue mover na memória um ponteiro alocado dinamicamente
+
+Q.5)Aloca no vetor dinamico C o valor de V e imprime na posição da memória V o valor referente
+a N de espaços em branco
+
+Q.13)A função troca_int funciona, já a função troca_str não funciona pois a função não altera o
+valor dos vetores string no endereço de memória.
+
+Q.15)
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char *concat(char *x, char *y){
+  char *diversao = malloc((strlen(x)+strlen(y))*sizeof(char));
+  int k=0;
+
+  for(int i = strlen(x), j = 0; x[j] != '\0'; j++, k++){
+    diversao[k] = x[j];
+  }
+  for(int i = strlen(y), j = 0; y[j] != '\0'; j++, k++){
+    diversao[k] = y[j];
+  }
+
+  return diversao;
+}
+
+int main() {
+  char *s1, *s2;
+
+  s1 = "Eu deveria aparecer depois ";
+  s2 = "Eu deveria aparecer primeiro";
+
+  s1 = concat(s1, s2);
+  printf("s1 is %s\n", s1);
+
+return 0;
+}

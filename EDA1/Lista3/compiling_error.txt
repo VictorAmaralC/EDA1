@@ -1,0 +1,21 @@
+/home/viktor/Área de Trabalho/EDA1/Lista 3/teste.c: In function ‘concatena’:
+/home/viktor/Área de Trabalho/EDA1/Lista 3/teste.c:5:3: warning: implicit declaration of function ‘concat’; did you mean ‘concatena’? [-Wimplicit-function-declaration]
+   concat(x,y);
+   ^~~~~~
+   concatena
+/home/viktor/Área de Trabalho/EDA1/Lista 3/teste.c: In function ‘main’:
+/home/viktor/Área de Trabalho/EDA1/Lista 3/teste.c:14:14: warning: passing argument 1 of ‘concatena’ from incompatible pointer type [-Wincompatible-pointer-types]
+   concatena (&s1, &s2);
+              ^
+/home/viktor/Área de Trabalho/EDA1/Lista 3/teste.c:4:6: note: expected ‘char *’ but argument is of type ‘char **’
+ char concatena(char *x, char *y){
+      ^~~~~~~~~
+/home/viktor/Área de Trabalho/EDA1/Lista 3/teste.c:14:19: warning: passing argument 2 of ‘concatena’ from incompatible pointer type [-Wincompatible-pointer-types]
+   concatena (&s1, &s2);
+                   ^
+/home/viktor/Área de Trabalho/EDA1/Lista 3/teste.c:4:6: note: expected ‘char *’ but argument is of type ‘char **’
+ char concatena(char *x, char *y){
+      ^~~~~~~~~
+/tmp/ccmaNn7n.o: In function `concatena':
+teste.c:(.text+0x24): undefined reference to `concat'
+collect2: error: ld returned 1 exit status
