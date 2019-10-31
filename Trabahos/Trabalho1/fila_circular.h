@@ -10,5 +10,6 @@ void print_fila();
 int redimensiona();
 void libera();
 int tam_fila();
+void reinicia_fila();
 
 #endif

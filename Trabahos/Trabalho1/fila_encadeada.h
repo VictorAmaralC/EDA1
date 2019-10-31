@@ -1,5 +1,5 @@
-#ifndef _fila_encadeada_h
-#define _fila_encadeada_h
+#ifndef fila_encadeada_h
+#define fila_encadeada_h
 
 struct elemFila {
     int dado;
@@ -16,5 +16,7 @@ int fila_vazia();
 int fila_cheia();
 void print_fila();
 int tam_fila();
+void reinicia_fila();
+
 
 #endif

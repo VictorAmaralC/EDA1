@@ -6,7 +6,7 @@ static int tam;
 static ElemFila *Fila;
 
 void cria_fila(){
-    Fila = malloc(sizeof (ElemFila));
+    Fila = calloc(1, sizeof (ElemFila));
     Fila->dado = 0;
     Fila->prox = Fila;
     tam = 0;
@@ -39,11 +39,11 @@ int desenfileira(int *y){
         return 0;
     }
     ElemFila *aux = Fila->prox;
-    *y = aux->dado;
+    int temp = aux->dado;
     Fila->prox = aux->prox;
     free(aux);
     tam--;
-    return 1;
+    return temp;
 }
 
 void libera(){
@@ -63,9 +63,9 @@ int tam_fila(){
 }
 
 void print_fila(){
-    ElemFila *aux = Fila;
+    ElemFila *aux = Fila->prox;
     printf("-------------------------------------------------------------\n|");
-    for(aux; aux->prox != Fila; aux = aux->prox){
+    for(aux; aux != Fila; aux = aux->prox){
         if(aux->dado == 0){
             printf(" xxx |");
         }
@@ -78,7 +78,7 @@ void print_fila(){
         printf("p  u\n");
     }
     else{
-        for(aux; aux->prox != Fila; aux = aux->prox){
+        for(aux; aux != Fila; aux = aux->prox){
             if(aux->dado != 0){
                 printf(" p ");
                 break;
@@ -87,7 +87,7 @@ void print_fila(){
                 printf("    ");
             }
         }
-        for(aux; aux->prox != Fila; aux = aux->prox){
+        for(aux; aux != Fila; aux = aux->prox){
             if(aux->dado != 0 && aux->prox->dado == 0){
                 printf("  u  \n");
                 break;
@@ -97,4 +97,8 @@ void print_fila(){
             }
         }
     }
+}
+
+void reinicia_fila(){
+    
 }

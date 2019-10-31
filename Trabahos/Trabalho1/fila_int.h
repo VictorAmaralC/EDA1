@@ -9,5 +9,7 @@ int fila_cheia();
 void print_fila();
 int tam_fila();
 void libera();
+void reinicia_fila();
+
 
 #endif

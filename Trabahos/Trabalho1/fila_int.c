@@ -19,16 +19,22 @@ return 1;
 }
 
 int desenfileira(int *y){
-    *y = fila_int[p];
-    fila_int[p] = 0;
-return fila_int[p++];
+    if(!fila_vazia()){
+        int i, temp = fila_int[0];
+        for( i=0; fila_int[i]!= 0; i++){
+            fila_int[i]= fila_int[i+1];
+        }
+        fila_int[i]=0;
+        u--;
+        return temp;
+    }
 }
 
 int fila_vazia(){
     if( p == u ) {
-    cria_fila();
+        return 1;
     }
-return p == u;
+return 0;
 }
 
 int fila_cheia(){

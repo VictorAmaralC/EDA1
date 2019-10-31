@@ -7,7 +7,7 @@ static int N, p, u;
 
 void cria_fila(){
     N = 5;
-    fila = malloc( N * sizeof(int));
+    fila = calloc(1, N * sizeof(int));
     p = 0; u = 0;
 }
 
@@ -47,13 +47,13 @@ int tam_fila(){
 
 int desenfileira(int *y){
     if(!fila_vazia()){
-        *y = fila[p++];
-        //fila[p] = 0;
-        if(p == N){
-            p = 0;
+        int i, temp = fila[0];
+        for( i=0; fila[i]!= 0; i++){
+            fila[i]= fila[i+1];
         }
-        return 1;
-    return 0;
+        fila[i]=0;
+        u--;
+        return temp;
     }
 }
 
@@ -115,4 +115,13 @@ int redimensiona(){
     }
     N *= 2;
     return 1;
+}
+
+void reinicia_fila(){
+    while(!fila_vazia()){
+        for(int i=0; fila[i]!=0; i++){
+            fila[i]=0;
+        }
+        p = u = 0;
+    }
 }

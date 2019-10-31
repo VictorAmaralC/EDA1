@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "fila_encadeada.h"
+//#include "fila_encadeada.h"
+#include "fila_circular.h"
+//#include "fila_int.h"
 
 void acessaMenu();
 void menu();
 void op1();
 void op2();
 void op3();
+void op4();
 
 int main(){
     cria_fila();
@@ -22,7 +25,8 @@ void menu(){
     printf(" (1) Inserir elementos na fila\n");
     printf(" (2) Remover elementos da fila\n");
     printf(" (3) Imprimir a Fila\n");
-    printf(" (4) Sair\n");
+    printf(" (4) Reinicia a Fila\n");
+    printf(" (5) Sair\n");
     printf("-------------------------------------------------------\n");
     printf("Digite a opção:");
 }
@@ -30,7 +34,7 @@ void menu(){
 void acessaMenu(){
     char op = '0';
     menu();
-    while(op != '4'){
+    while(op != '5'){
         scanf(" %c", &op);
         switch(op){
             case '1':
@@ -46,6 +50,10 @@ void acessaMenu(){
                 menu();
                 break;
             case '4':
+                op4();
+                menu();
+                break;
+            case '5':
                 libera();
                 system("clear");
                 break;
@@ -97,8 +105,7 @@ void op2(){
                 break;
             }
             else{
-                desenfileira(&elem);
-                printf("Elemento removido: %d\n", elem);
+                printf("Elemento removido: %d\n", desenfileira(&elem));
             }
         }
     }
@@ -107,4 +114,9 @@ void op2(){
 void op3(){
     system("clear");
     print_fila();
+}
+
+void op4(){
+    reinicia_fila();
+    system("clear");
 }
