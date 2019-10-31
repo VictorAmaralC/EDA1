@@ -88,3 +88,12 @@ void print_fila(){
         }
     }
 }
+
+void reinicia_fila(){
+    while(!fila_vazia()){
+        for(int i=0; fila_int[i]!=0; i++){
+            fila_int[i]=0;
+        }
+        p = u = 0;
+    }
+}

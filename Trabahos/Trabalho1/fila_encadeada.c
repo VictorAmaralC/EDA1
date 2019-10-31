@@ -100,5 +100,10 @@ void print_fila(){
 }
 
 void reinicia_fila(){
-    
+    while(!fila_vazia()){
+        ElemFila *aux = Fila->prox;
+        Fila->prox = aux->prox;
+        tam--;
+        free(aux);
+    }
 }

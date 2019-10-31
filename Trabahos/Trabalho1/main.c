@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 //#include "fila_encadeada.h"
-#include "fila_circular.h"
-//#include "fila_int.h"
+//#include "fila_circular.h"
+#include "fila_int.h"
 
 void acessaMenu();
 void menu();
