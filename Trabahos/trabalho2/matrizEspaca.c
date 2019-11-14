@@ -1,82 +1,70 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct pCordenada {
-    int coluna;
+typedef struct tempNo
+{
     int valor;
-    struct pCordenada *prox;
-} pCordenada;
+    int coluna;
+    struct tempNo *prox;
+} NO;
 
-void construtor(pCordenada **head){
-    *head = NULL;
+typedef NO *PONT;
+
+typedef struct
+{
+    PONT *A;
+    int linhas;
+    int colunas;
+} MATRIZ;
+
+void atribuiValor(MATRIZ *m, int lin, int col, int val)
+{
+    PONT novo = (PONT)malloc(sizeof(NO));
+    novo->coluna = col;
+    novo->valor = val;
+    novo->prox = m->A[lin];
+    m->A[lin] = novo;
 }
 
-void insere(pCordenada **matriz, int linha, int coluna, int valor){
-    pCordenada *new = malloc (sizeof(pCordenada));
-    new->coluna = coluna;
-    new->valor = valor;
-    new->prox = NULL;
-
-    if(matriz[linha] == NULL){
-        matriz[linha] = new;
-    } else {
-        pCordenada *curry = matriz[linha];
-        pCordenada *prev = NULL;
-
-        while(curry != NULL){
-            if(curry->coluna > coluna){
-                if(prev == NULL){
-                    matriz[linha] = new;
-                    new->prox = curry;
-                    return;
-                }
-                prev->prox = new;
-                new->prox = curry;
-                return;
-            }
-            prev = curry;
-            curry = curry->prox;
-        }
-        prev->prox = new;
-        return;
-    }
-}
-
-int soma(pCordenada *head, int vetor[]){
-    int total = 0;
-    while(head != NULL){
-        total += head->valor * vetor[head->coluna];
-        head = head->prox;
-    }
-    return total;
-}
-
-int main(){
-    int n, m, linha, coluna, valor;
-
+int main()
+{
+    MATRIZ mat;
+    int n, m;
     scanf("%d %d", &m, &n);
-    pCordenada *matriz[m];
-    int vetor[n], result[n];
+    int v[n];
+    int w[1000000] = {};
 
-    for(int i=0; i<n; i++){
-        construtor(&matriz[i]);
+    mat.linhas = n;
+    mat.colunas = m;
+    mat.A = (PONT *)malloc(n * sizeof(PONT));
+
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &v[i]);
+        mat.A[i] = NULL;
     }
 
-    for(int i=0; i<n; i++){
-        scanf("%d", &vetor[i]);
+    int lin, col, val, nnz = 0;
+    while (scanf("%d %d %d", &lin, &col, &val) != EOF)
+    {
+        atribuiValor(&mat, lin, col, val);
+        nnz++;
     }
 
-    while(scanf("%d %d %d", &linha, &coluna, &valor) != EOF){
-        insere(matriz, linha, coluna, valor);
+    int i = 0;
+    while (nnz > 0)
+    {
+
+        PONT atual = mat.A[i];
+        while (atual != NULL && atual->coluna >= 0)
+        {
+            w[i] += v[atual->coluna] * atual->valor;
+            atual = atual->prox;
+            nnz--;
+        }
+        i++;
     }
 
-    for(int i=0; i<n; i++){
-        result[i] = soma(matriz[i], vetor);
-    }
-
-    for (int i = 0; i < n; i++){
-        printf("%d\n", result[i]);
-    }
-
-    return 0;
+    for (int i = 0; i < m; i++)
+        printf("%d\n", w[i]);
 }
