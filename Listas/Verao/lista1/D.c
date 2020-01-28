@@ -1,8 +1,11 @@
 #include <stdio.h>
 
 int main(){
-    int numero, maior=1;
-
+    int numero, maior;
+    
+    scanf("%d", &numero);
+    maior=numero;
+     
     while(scanf("%d", &numero) != EOF){
         if(maior<numero) maior = numero;
     }
